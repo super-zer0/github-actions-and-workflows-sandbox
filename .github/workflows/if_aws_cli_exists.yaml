@@ -1,0 +1,9 @@
+---
+on:
+  workflow_dispatch:
+run-name: AWS_CLI Test
+jobs:
+  aws_cli_run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: aws s3 ls
