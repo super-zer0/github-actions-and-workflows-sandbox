@@ -1,0 +1,27 @@
+---
+name: Print
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        type: environment
+        description: Test
+      environments:
+        type: choice
+        options: [TEST, NEW, PROD]
+        required: true
+        description: Environments
+env:
+  TEST: ${{ secrets[format('AWS_{0}', inputs.environments)] }}
+  TEST2: ${{ format('AWS_{0}', inputs.environments) }}
+  # TEST3: ${{ format('AWS_{0}', env.s) }}
+jobs:
+  Print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: |-
+          echo $TEST
+          echo $TEST2
+      - run: |-
+          echo ${{ inputs.test }}
