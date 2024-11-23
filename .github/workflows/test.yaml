@@ -16,7 +16,7 @@ env:
   TEST2: ${{ format('AWS_{0}', inputs.environments) }}
   # TEST3: ${{ format('AWS_{0}', env.s) }}
 jobs:
-  Print:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Print
@@ -25,3 +25,6 @@ jobs:
           echo $TEST2
       - run: |-
           echo ${{ inputs.test }}
+
+      - run: |
+          docker ps
